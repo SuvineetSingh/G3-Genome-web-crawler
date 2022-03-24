@@ -38,13 +38,11 @@ for (link in article_links) {
   article_authors <- article_html %>% html_elements('.al-authors-list .linked-name') %>% html_text()
   article_author_affiliations <- article_html %>% html_elements('.info-card-affilitation') %>% html_text(trim = TRUE)
   info_card_author <- article_html %>% html_elements('.info-card-author')
+  article_author_correspondence <- NA
   for (card in info_card_author) {
     t <- card %>% html_element('.info-author-correspondence')
     if (class(t) == 'xml_node') {
       article_author_correspondence <- card %>% html_elements('.name-role-wrap') %>% html_text(trim = TRUE)
-    }
-    else {
-      article_author_correspondence <- NA
     }
   }
   article_author_correspondence_email <- article_html %>% html_elements('.info-author-correspondence a') %>% html_text(trim = TRUE)
