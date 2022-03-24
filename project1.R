@@ -43,6 +43,9 @@ for (link in article_links) {
     if (class(t) == 'xml_node') {
       article_author_correspondence <- card %>% html_elements('.name-role-wrap') %>% html_text(trim = TRUE)
     }
+    else {
+      article_author_correspondence <- NA
+    }
   }
   article_author_correspondence_email <- article_html %>% html_elements('.info-author-correspondence a') %>% html_text(trim = TRUE)
   article_published <- article_html %>% html_element('.citation-date') %>% html_text2()
